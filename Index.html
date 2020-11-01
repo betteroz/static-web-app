@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+h1 {text-align: center;}
+
+#override{
+	width: 220px;
+}
+
+#owner{
+	width: 220px;
+}
+
+.sansserif {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+table {
+  border-collapse: collapse;
+  width: 50%;
+}
+
+table.center {
+  margin-left:auto; 
+  margin-right:auto;
+}
+
+input[type="number"] {
+    font-size:20px;
+}
+
+input[type="text"] {
+    font-size:20px;
+}
+
+.buttonHolder{
+    text-align: center;
+}
+
+.displaycenter {
+  margin-left:auto; 
+  margin-right:auto;
+}
+
+.btn-3d-sub {
+  display: block;
+  margin: 0 auto;
+  width: 25%;
+  height: 50px;
+  font-family: Helvetica;
+  font-size: 20px;
+  border-bottom: 5px solid #173814;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  background: linear-gradient(#469e3f,#255b20);
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0px 2px 10px grey;
+  transition: 150ms ease;
+  text-align: center;
+  line-height: 50px;
+  font-weight: bold;
+}
+</style>
+
+</head>
+<body style="color: #ffffff; background-color: #000000;" class="sansserif">
+<h1>Commission Calculation</h1></p>
+<div style="width:1200px; margin-right:auto; margin-left:auto;">
+<form>
+<table class="center" style="font-size:20px">
+<tr>
+<td><label for="property">Property Value:</label><br>
+<input name="total" id="total" type="number" maxlength="20" min="0" placeholder="00.00" /></p></td>
+
+<td><label for="rate">Commission Rate (%):</label><br>
+<input name="rate" id="rate" type="number" maxlength="20" min="0" placeholder="00.00" /></p></td>
+</tr>
+
+<tr>
+<td><label for="firstrate">1st Commission Rate (%):</label><br>
+<input name="firstrate" id="firstrate" type="number" maxlength="20" min="0" placeholder="00.00"/></p></td>
+
+<td>
+</td>
+</tr>
+
+<tr>
+<td><label for="override">Overrider:</label><br>
+<select id="override" style="font-size:20px">
+  <option value="1" selected="selected">Profit</option>
+  <option value="2">Loss</option>
+</select></p></td>
+
+<td><label for="lossrate">Loss Rate:</label><br>
+<input name="lorate" id="lorate" type="text" maxlength="20" min="0" placeholder="00.00" readonly="true" /></p></td>
+</tr>
+
+<tr>
+<td><label for="dealowner">Deal Owner:</label><br>
+<select id="owner" style="font-size:20px";>
+  <option value="1" selected="selected">Sales</option>
+  <option value="2">Sales Manager</option>
+  <option value="2">Sales Director</option>
+</select></p></td>
+</tr>
+</table>
+<br />
+<br />
+
+
+<div class="buttonHolder">
+<input type="button" class="btn-3d-sub" value="Calculate Commisssion" onclick="commCalculation()"> </p>
+</div>
+<br />
+<br />
+
+<table class="center" style="font-size:20px">
+<tr><td>
+<label for="commission">Commisssion:</label>&nbsp;&nbsp;
+<input name="pay" id="pay" type="text" maxlength="20" min="0" placeholder="00.00" readonly="true" />
+</td></tr>
+</table>
+
+</form>
+
+</div>
+</body>
+
+<script>
+    function commCalculation() {
+var total = document.getElementById('total').value;
+var rate = document.getElementById('rate').value/100;
+var firstrate = document.getElementById('firstrate').value/100;
+var pay = parseFloat(parseFloat(total) * parseFloat(rate)*parseFloat(firstrate)).toFixed(2);
+
+
+document.getElementById('rate').value = rate*100;
+document.getElementById('firstrate').value = firstrate*100;
+document.getElementById('pay').value = Math.round(pay).toFixed(2);
+}
+</script>
+
+</html>
